@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>caiDanCi</artifactId>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>3.8.1</version>
+      </plugin>
+
+      <plugin>
+        <artifactId>javafx-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>${main.class}</mainClass>
+        </configuration>
+        <groupId>org.openjfx</groupId>
+        <version>${javafx.maven.plugin.version}</version>
+      </plugin>
+
+      <plugin>
+        <artifactId>gluonfx-maven-plugin</artifactId>
+        <configuration>
+          <attachList>
+            <list>display</list>
+            <list>storage</list>
+          </attachList>
+          <mainClass>${main.class}</mainClass>
+          <!--          <bundlesList>-->
+
+          <!--          </bundlesList>-->
+          <reflectionList>
+            <list>caidanci.HelloController</list>
+            <list>com.gluonhq.attach</list>
+            <list>com.gluonhq.attach.util.Services</list>
+            <list>com.gluonhq.attach.storage.StorageService</list>
+          </reflectionList>
+          <resourcesList>
+            <list>caidanci/caidanci.mv.db</list>
+            <list>caidanci/caidanci.trace.db</list>
+            <list>caidanci/fonts/ArimoNerdFont-Regular.ttf</list>
+          </resourcesList>
+          <runtimeArgs>
+            <list>-Dcom.sun.javafx.isEmbedded=true</list>
+            <list>-Dcom.sun.javafx.virtualKeyboard=javafx</list>
+          </runtimeArgs>
+          <target>${gluonfx.target}</target>
+
+        </configuration>
+        <groupId>com.gluonhq</groupId>
+        <version>${gluonfx.maven.plugin.version}</version>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <artifactId>javafx-controls</artifactId>
+      <groupId>org.openjfx</groupId>
+      <version>${javafx.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>javafx-fxml</artifactId>
+      <groupId>org.openjfx</groupId>
+      <version>${javafx.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>atlantafx-base</artifactId>
+      <groupId>io.github.mkpaz</groupId>
+      <version>2.0.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.kordamp.ikonli/ikonli-javafx -->
+    <dependency>
+      <artifactId>ikonli-javafx</artifactId>
+      <groupId>org.kordamp.ikonli</groupId>
+      <version>12.3.1</version>
+    </dependency>
+    <dependency>
+      <artifactId>ikonli-antdesignicons-pack</artifactId>
+      <groupId>org.kordamp.ikonli</groupId>
+      <version>12.3.1</version>
+    </dependency>
+    <dependency>
+      <artifactId>ikonli-bootstrapicons-pack</artifactId>
+      <groupId>org.kordamp.ikonli</groupId>
+      <version>12.3.1</version>
+    </dependency>
+    <dependency>
+      <artifactId>h2</artifactId>
+      <groupId>com.h2database</groupId>
+      <version>2.3.232</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.gluonhq.attach/util -->
+    <dependency>
+      <artifactId>util</artifactId>
+      <groupId>com.gluonhq.attach</groupId>
+      <version>${attach.version}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.gluonhq.attach/storage -->
+    <dependency>
+      <artifactId>storage</artifactId>
+      <groupId>com.gluonhq.attach</groupId>
+      <version>${attach.version}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.gluonhq.attach/keyboard -->
+    <dependency>
+      <artifactId>keyboard</artifactId>
+      <groupId>com.gluonhq.attach</groupId>
+      <version>${attach.version}</version>
+    </dependency>
+
+  </dependencies>
+
+
+  <groupId>org.iam</groupId>
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>CaiDanCi</name>
+
+  <packaging>jar</packaging>
+  <profiles>
+    <profile>
+      <id>ios</id>
+      <properties>
+        <gluonfx.target>ios</gluonfx.target>
+      </properties>
+    </profile>
+    <profile>
+      <id>android</id>
+      <properties>
+        <gluonfx.target>android</gluonfx.target>
+      </properties>
+    </profile>
+  </profiles>
+
+  <properties>
+    <attach.version>4.0.21</attach.version>
+    <charm.cloudlink.version>6.0.7</charm.cloudlink.version>
+    <charm.version>6.2.3</charm.version>
+    <connect.version>2.0.1</connect.version>
+    <glisten.afterburner.version>2.1.0</glisten.afterburner.version>
+    <gluonfx.maven.plugin.version>1.0.23</gluonfx.maven.plugin.version>
+    <gluonfx.target>host</gluonfx.target>
+    <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
+    <javafx.version>22.0.2</javafx.version>
+    <main.class>caidanci.HelloApplication</main.class>
+    <maven.compiler.release>17</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <version>1.0.0-SNAPSHOT</version>
+</project>
