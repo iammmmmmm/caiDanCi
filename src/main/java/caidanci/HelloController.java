@@ -26,10 +26,11 @@ import org.kordamp.ikonli.javafx.FontIcon;
 public class HelloController {
 
   private final SqlTools sqlTools = new SqlTools();
+  String[] theme = {"theme/primer-light.css", "theme/primer-dark.css"};
   /**
    * 主题 0 默认 1 暗黑
    */
-  private int themeFlag = 0;
+  private int themeFlag = 1;
   /**
    * 单词长度
    */
@@ -62,18 +63,15 @@ public class HelloController {
   @FXML
   void changeTheme() {
     if (themeFlag == 1) {
-      Application.setUserAgentStylesheet(
-          Objects.requireNonNull(this.getClass().getResource("theme/primer-light.css"))
-              .toExternalForm());
+
       changeTheme.setGraphic(new FontIcon(BootstrapIcons.SUN));
       themeFlag = 0;
     } else {
-      Application.setUserAgentStylesheet(
-          Objects.requireNonNull(this.getClass().getResource("theme/primer-dark.css"))
-              .toExternalForm());
+
       changeTheme.setGraphic(new FontIcon(BootstrapIcons.MOON));
       themeFlag = 1;
     }
+    Application.setUserAgentStylesheet(this.getClass().getResource(theme[themeFlag]).toString());
   }
 
   /**
@@ -164,9 +162,10 @@ public class HelloController {
   @FXML
   void initialize() {
     Font a = Font.loadFont(
-        Objects.requireNonNull(this.getClass()
-            .getResourceAsStream("fonts/HeavyData/HeavyDataNerdFontPropo-Regular.ttf")), 20);
+        Objects.requireNonNull(this.getClass().getResourceAsStream("fonts/fzjt.ttf")), 20);
     System.out.println(a.getFamily());
+    Application.setUserAgentStylesheet(
+        this.getClass().getResource("theme/primer-dark.css").toString());
     testText.setFont(Font.font(a.getFamily()));
     changeTheme.setGraphic(new FontIcon(BootstrapIcons.SUN));
     info.setGraphic(new FontIcon(BootstrapIcons.INFO_CIRCLE));
@@ -175,7 +174,6 @@ public class HelloController {
     inputButton.setDisable(true);
     inputTextFiled.setDisable(true);
     gameIsStart = false;
-
     SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(
         3, 10, wordLength);
     levelChose.setValueFactory(valueFactory);
