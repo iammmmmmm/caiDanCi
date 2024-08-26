@@ -3,6 +3,7 @@ package caidanci;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 
+
 /**
  * @author Iammm 2024/8/23 22:32
  */
@@ -46,5 +47,6 @@ public class tools {
 
     return shouldSize;
   }
-  
+
 }
+

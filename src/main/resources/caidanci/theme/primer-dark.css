@@ -1,5 +1,5 @@
 .root {
-  -fx-font-family: "HeavyData Nerd Font Propo";
+  -fx-font-family: FZKai-Z03S;
   -color-dark: #010409;
   -color-light: #ffffff;
   -color-base-0: #f0f6fc;
@@ -113,7 +113,6 @@
   -fx-background-radius: inherit;
   -fx-background-insets: inherit;
   -fx-padding: inherit;
-
 }
 
 .root.popup {
