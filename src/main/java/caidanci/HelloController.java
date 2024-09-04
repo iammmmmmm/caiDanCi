@@ -1,6 +1,9 @@
 package caidanci;
 
+import atlantafx.base.theme.PrimerDark;
+import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -22,7 +25,8 @@ import java.util.Objects;
 public class HelloController {
 
     private final SqlTools sqlTools = new SqlTools();
-    String[] theme = {"theme/primer-light.css", "theme/primer-dark.css"};
+    private final ThemeManager tm = ThemeManager.getInstance();
+    String[] theme = {new PrimerLight().getUserAgentStylesheet(), new PrimerDark().getUserAgentStylesheet()};
     /**
      * 主题 0 默认 1 暗黑
      */
@@ -50,6 +54,8 @@ public class HelloController {
     private GridPane outputGrid;
     @FXML
     private Button startGame;
+    @FXML
+    private ComboBox<String> fontChose;
 
     /**
      * 切换主题
@@ -65,8 +71,7 @@ public class HelloController {
             changeTheme.setGraphic(new FontIcon(BootstrapIcons.MOON));
             themeFlag = 1;
         }
-        Application.setUserAgentStylesheet(
-                Objects.requireNonNull(this.getClass().getResource(theme[themeFlag])).toString());
+        Application.setUserAgentStylesheet(theme[themeFlag]);
     }
 
     /**
@@ -78,6 +83,7 @@ public class HelloController {
             inputButtonClicked();
         }
     }
+
 
     /**
      * 处理输入按钮点击事件
@@ -156,11 +162,11 @@ public class HelloController {
      */
     @FXML
     void initialize() {
+        Application.setUserAgentStylesheet(theme[themeFlag]);
         Font a = Font.loadFont(
                 Objects.requireNonNull(this.getClass().getResourceAsStream("fonts/fzjt.ttf")), 20);
-        System.out.println(a.getFamily());
-        Application.setUserAgentStylesheet(
-                Objects.requireNonNull(this.getClass().getResource("theme/primer-dark.css")).toString());
+        Platform.runLater(() -> tm.setFontFamily(a.getFamily()));
+        tools.makeFontFamilyChooser(fontChose);
         changeTheme.setGraphic(new FontIcon(BootstrapIcons.MOON));
         info.setGraphic(new FontIcon(BootstrapIcons.INFO_CIRCLE));
         startGame.setText("开始游戏");
