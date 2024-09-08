@@ -102,6 +102,10 @@
   "methods":[{"name":"createRenderer","parameterTypes":["com.sun.scenario.effect.FilterContext"] }]
 },
 {
+  "name":"com.sun.scenario.effect.impl.prism.ps.PPSLinearConvolveShadowPeer",
+  "methods":[{"name":"<init>","parameterTypes":["com.sun.scenario.effect.FilterContext","com.sun.scenario.effect.impl.Renderer","java.lang.String"] }]
+},
+{
   "name":"com.sun.scenario.effect.impl.prism.ps.PPSRenderer",
   "methods":[{"name":"createRenderer","parameterTypes":["com.sun.scenario.effect.FilterContext"] }]
 },
@@ -222,6 +226,16 @@
   "methods":[{"name":"setOnAction","parameterTypes":["javafx.event.EventHandler"] }]
 },
 {
+  "name":"javafx.scene.control.ComboBox",
+  "queryAllDeclaredMethods":true,
+  "queryAllPublicConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"javafx.scene.control.ComboBoxBase",
+  "queryAllDeclaredMethods":true
+},
+{
   "name":"javafx.scene.control.Control",
   "queryAllDeclaredMethods":true
 },
@@ -258,6 +272,9 @@
   "queryAllDeclaredMethods":true
 },
 {
+  "name":"javafx.scene.effect.Effect"
+},
+{
   "name":"javafx.scene.image.Image"
 },
 {
@@ -274,10 +291,18 @@
     {"name":"setRightAnchor","parameterTypes":["javafx.scene.Node","java.lang.Double"] }, 
     {"name":"setTopAnchor","parameterTypes":["javafx.scene.Node","java.lang.Double"] }
   ],
-  "queriedMethods":[
-    {"name":"getBottomAnchor","parameterTypes":["javafx.scene.Node"] }, 
-    {"name":"getRightAnchor","parameterTypes":["javafx.scene.Node"] }
-  ]
+  "queriedMethods":[{"name":"getBottomAnchor","parameterTypes":["javafx.scene.Node"] }]
+},
+{
+  "name":"javafx.scene.layout.BorderPane",
+  "queryAllDeclaredMethods":true,
+  "queryAllPublicConstructors":true,
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"setAlignment","parameterTypes":["javafx.scene.Node","javafx.geometry.Pos"] }, 
+    {"name":"setCenter","parameterTypes":["javafx.scene.Node"] }
+  ],
+  "queriedMethods":[{"name":"getAlignment","parameterTypes":["javafx.scene.Node"] }]
 },
 {
   "name":"javafx.scene.layout.FlowPane",

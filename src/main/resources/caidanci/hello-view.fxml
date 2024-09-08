@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="caidanci.HelloController">
-    <BorderPane prefHeight="606.0" prefWidth="337.0">
-        <center>
-            <AnchorPane prefHeight="198.0" prefWidth="300.0" BorderPane.alignment="CENTER">
-                <FlowPane alignment="TOP_CENTER" layoutX="2.0" layoutY="425.0" prefHeight="23.0" prefWidth="333.0">
-                    <Label text="单词长度：" />
-                    <Spinner fx:id="levelChose" prefHeight="23.0" prefWidth="154.0" />
-                </FlowPane>
-                <GridPane fx:id="outputGrid" prefHeight="362.0" prefWidth="331.0">
-                </GridPane>
-                <Button fx:id="changeTheme" layoutX="263.0" layoutY="516.0" mnemonicParsing="false" onAction="#changeTheme" AnchorPane.bottomAnchor="67.0">
-                </Button>
-                <Button fx:id="info" layoutX="219.0" layoutY="516.0" mnemonicParsing="false" onMouseClicked="#infoButtonClicked" AnchorPane.bottomAnchor="67.0" />
-                <Button fx:id="startGame" layoutX="127.0" layoutY="493.0" mnemonicParsing="false" onMouseClicked="#startGame" text="开始游戏" AnchorPane.bottomAnchor="90.0" />
-                <FlowPane alignment="TOP_CENTER" layoutX="7.0" layoutY="62.0" prefHeight="23.0" prefWidth="322.0" AnchorPane.bottomAnchor="130.0">
-                    <Button fx:id="inputButton" mnemonicParsing="false" onMouseClicked="#inputButtonClicked" onTouchReleased="#inputButtonTouched" text="输入" textAlignment="CENTER" />
-                    <TextField fx:id="inputTextFiled" onKeyReleased="#inputFiledKeyRelease" />
-                </FlowPane>
-            <ComboBox fx:id="fontChose" layoutX="19.0" layoutY="516.0" prefWidth="150.0" />
-            </AnchorPane>
-        </center>
-    </BorderPane>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" BorderPane.alignment="CENTER"
+            xmlns="http://javafx.com/javafx/17" fx:controller="caidanci.HelloController">
+    <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+               AnchorPane.topAnchor="0.0">
+        <BorderPane prefHeight="606.0" prefWidth="337.0" BorderPane.alignment="CENTER">
+            <center>
+                <VBox alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+                    <GridPane fx:id="outputGrid" prefHeight="362.0" prefWidth="331.0">
+                    </GridPane>
+                    <FlowPane alignment="TOP_CENTER" prefHeight="23.0" prefWidth="333.0">
+                        <Label text="单词长度："/>
+                        <Spinner fx:id="levelChose" prefHeight="23.0" prefWidth="154.0"/>
+                    </FlowPane>
+                    <FlowPane alignment="TOP_CENTER" prefHeight="23.0" prefWidth="322.0">
+                        <Button fx:id="inputButton" mnemonicParsing="false"
+                                onMouseClicked="#inputButtonClicked" onTouchReleased="#inputButtonTouched"
+                                text="输入" textAlignment="CENTER"/>
+                        <TextField fx:id="inputTextFiled" onKeyReleased="#inputFiledKeyRelease"/>
+                    </FlowPane>
+                    <FlowPane alignment="TOP_CENTER" prefHeight="23.0" prefWidth="322.0">
+                        <Button fx:id="startGame" mnemonicParsing="false" onMouseClicked="#startGame"
+                                text="开始游戏"/>
+                    </FlowPane>
+                    <FlowPane alignment="TOP_CENTER" prefHeight="23.0" prefWidth="322.0">
+                        <Button fx:id="changeTheme" mnemonicParsing="false" onAction="#changeTheme"/>
+                        <Button fx:id="info" mnemonicParsing="false" onMouseClicked="#infoButtonClicked"/>
+                        <ComboBox fx:id="fontChose" prefWidth="150.0"/>
+                    </FlowPane>
+                </VBox>
+            </center>
+        </BorderPane>
+    </StackPane>
 </AnchorPane>
