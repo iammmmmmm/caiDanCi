@@ -90,39 +90,47 @@ public class HelloController {
      */
     @FXML
     void inputButtonClicked() {
-        String inputText = inputTextFiled.getText();
-        if (inputText != null && !inputText.isEmpty()) {
-            if (inputText.length() == wordLength) {
-                if (checkWord(inputText)) {
-                    if (inputTime == 0) {
-                        showAlert(Alert.AlertType.INFORMATION, "不，你失败了！", "你耗尽了机会！",
-                                "答案：" + answerWord + " :\n" + sqlTools.getWordInfo(answerWord));
-                        startGame();
-                    } else {
-                        inputTime--;
-                        if (wordList.contains(inputText)) {
-                            showAlert(Alert.AlertType.WARNING, "不", "你已经猜过这个单词了！",
-                                    inputText + " :\n" + sqlTools.getWordInfo(inputText));
-                            inputTextFiled.clear();
-                        } else {
-                            wordList.add(inputText);
-                            refresh(inputText);
-                            if (inputText.equals(answerWord)) {
-                                showAlert(Alert.AlertType.INFORMATION, "胜利！", "恭喜你，成功猜出单词！",
-                                        answerWord + " :\n" + sqlTools.getWordInfo(answerWord));
-                                startGame();
-                            }
-                        }
-                    }
-                } else {
-                    showAlert(Alert.AlertType.ERROR, "错误！", "输入的单词错误！", "应该输入一个正确的单词");
-                }
-            } else {
-                showAlert(Alert.AlertType.WARNING, "错误！", "输入格式错误！",
-                        "你应该输入一个单词，且该单词长度为" + wordLength + "！");
-            }
-        }
+        String inputText = inputTextFiled.getText().toLowerCase();
         inputTextFiled.clear();
+        //  inputCheck(inputText);
+
+    }
+
+    private void inputCheck(String inputText) {
+        Platform.runLater(() -> {
+            if (inputText.isEmpty()) {
+                return;
+            }
+            if (inputText.length() != wordLength) {
+                showAlert(Alert.AlertType.WARNING, "错误！", "输入格式错误！", "你应该输入一个单词，且该单词长度为" + wordLength + "！");
+                return;
+            }
+            if (!checkWord(inputText)) {
+                showAlert(Alert.AlertType.ERROR, "错误！", "输入的单词错误！", "应该输入一个正确的单词");
+                return;
+            }
+            if (inputTime == 0) {
+                showAlert(Alert.AlertType.INFORMATION, "不，你失败了！", "你耗尽了机会！", "答案：" + answerWord + " :\n" + sqlTools.getWordInfo(answerWord));
+                startGame();
+                return;
+            }
+            if (wordList.contains(inputText)) {
+                showAlert(Alert.AlertType.WARNING, "不", "你已经猜过这个单词了！", inputText + " :\n" + sqlTools.getWordInfo(inputText));
+                inputTextFiled.clear();
+                return;
+            }
+            inputTime--;
+            wordList.add(inputText);
+            refresh(inputText);
+            if (inputText.equals(answerWord)) {
+                showAlert(Alert.AlertType.INFORMATION, "胜利！", "恭喜你，成功猜出单词！", answerWord + " :\n" + sqlTools.getWordInfo(answerWord));
+                startGame();
+            }
+            if (inputTime == 0) {
+                showAlert(Alert.AlertType.INFORMATION, "不，你失败了！", "你耗尽了机会！", "答案：" + answerWord + " :\n" + sqlTools.getWordInfo(answerWord));
+                startGame();
+            }
+        });
     }
 
     /**
@@ -139,8 +147,7 @@ public class HelloController {
             Label label = new Label(temp);
             label.setPrefSize(charSize, charSize);
             label.setAlignment(Pos.CENTER); // 居中对齐
-            label.setBackground(
-                    new Background(new BackgroundFill(getColor(temp, i), CornerRadii.EMPTY, null)));
+            label.setBackground(new Background(new BackgroundFill(getColor(temp, i), CornerRadii.EMPTY, null)));
             label.setStyle("-fx-border-color: black; -fx-border-width: 1px;"); // 设置边框样式
             outputGrid.add(label, i, rowIndex); // 放置在第一行的不同列
         }
@@ -162,9 +169,8 @@ public class HelloController {
      */
     @FXML
     void initialize() {
-        Application.setUserAgentStylesheet(theme[themeFlag]);
-        Font a = Font.loadFont(
-                Objects.requireNonNull(this.getClass().getResourceAsStream("fonts/fzjt.ttf")), 20);
+//        Application.setUserAgentStylesheet(theme[themeFlag]);
+        Font a = Font.loadFont(Objects.requireNonNull(this.getClass().getResourceAsStream("fonts/fzjt.ttf")), 20);
         Platform.runLater(() -> tm.setFontFamily(a.getFamily()));
         tools.makeFontFamilyChooser(fontChose);
         changeTheme.setGraphic(new FontIcon(BootstrapIcons.MOON));
@@ -174,8 +180,7 @@ public class HelloController {
         inputButton.setDisable(true);
         inputTextFiled.setDisable(true);
         gameIsStart = false;
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(
-                3, 10, wordLength);
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(3, 10, wordLength);
         levelChose.setValueFactory(valueFactory);
         levelChose.valueProperty().addListener((observable, oldValue, newValue) -> {
             wordLength = newValue;
@@ -274,6 +279,7 @@ public class HelloController {
      */
     private void showAlert(Alert.AlertType alertType, String title, String header, String content) {
         Alert alert = new Alert(alertType);
+        tm.addScene(alert.getDialogPane().getScene());
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);

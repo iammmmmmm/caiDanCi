@@ -22,7 +22,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(root, size[0], size[1]);
 
         var tm = ThemeManager.getInstance();
-        tm.setScene(scene);
+        tm.addScene(scene);
 
         stage.setTitle("Hello!");
         stage.setResizable(false);

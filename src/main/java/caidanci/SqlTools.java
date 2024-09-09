@@ -66,6 +66,7 @@ public class SqlTools {
             System.out.println("this is check ");
         } catch (SQLException e) {
             System.err.println("连接数据库失败：" + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -77,9 +78,10 @@ public class SqlTools {
                 statement.close();
             }
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
-        System.out.println("关闭数据库连接成功！");
+        System.err.println("关闭数据库连接成功！");
     }
 
     String getAnswer(int limit) {
@@ -95,7 +97,8 @@ public class SqlTools {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("查询数据库失败：" + e.getMessage());
+            System.err.println("查询数据库失败：" + e.getMessage());
+            e.printStackTrace();
         }
         return resultWord;
     }
@@ -114,7 +117,9 @@ public class SqlTools {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("查询数据库失败：" + e.getMessage());
+
+            System.err.println("查询数据库失败：" + e.getMessage());
+            e.printStackTrace();
         }
         return isWord;
     }
@@ -131,7 +136,8 @@ public class SqlTools {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("查询数据库失败：" + e.getMessage());
+            System.err.println("查询数据库失败：" + e.getMessage());
+            e.printStackTrace();
         }
         return resultWord;
     }

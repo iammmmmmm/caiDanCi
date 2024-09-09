@@ -1,5 +1,6 @@
 package caidanci;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.ComboBox;
@@ -76,21 +77,9 @@ public class tools {
                 super.updateItem(item, empty);
                 if (!(empty || item == null)) {
                     setText(item);
-                    setStyle("-fx-font-family: '" + item + "'; ");
+                    Platform.runLater(() -> setStyle("-fx-font-family: '" + item + "'; "));
                 }
             }
         });
-        // Set button cell to display selected font
-        fontFamilyChooser.setButtonCell(new ListCell<>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (!(empty || item == null)) {
-                    setText(item);
-                    setStyle("-fx-font-family: '" + item + "';");
-                }
-            }
-        });
-
     }
 }

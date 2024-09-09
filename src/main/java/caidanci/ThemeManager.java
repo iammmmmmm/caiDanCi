@@ -3,10 +3,7 @@ package caidanci;
 import javafx.css.PseudoClass;
 import javafx.scene.Scene;
 
-import java.util.Base64;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -18,8 +15,8 @@ public class ThemeManager {
     private static final PseudoClass USER_CUSTOM = PseudoClass.getPseudoClass("user-custom");
     private final Map<String, String> customCSSDeclarations = new LinkedHashMap<>(); // -fx-property | value;
     private final Map<String, String> customCSSRules = new LinkedHashMap<>(); // .foo | -fx-property: value;
+    private final List<Scene> scene = new ArrayList<>();
     private String fontFamily = "FZKai-Z03S";
-    private Scene scene;
 
     public static ThemeManager getInstance() {
         return InstanceHolder.INSTANCE;
@@ -52,20 +49,23 @@ public class ThemeManager {
             css.append(v);
             css.append("}\n");
         });
+        for (Scene scene : getScene()) {
 
-        getScene().getRoot().getStylesheets().removeIf(uri -> uri.startsWith("data:text/css"));
-        getScene().getRoot().getStylesheets().add(
-                "data:text/css;base64," + Base64.getEncoder().encodeToString(css.toString().getBytes(UTF_8))
-        );
-        getScene().getRoot().pseudoClassStateChanged(USER_CUSTOM, true);
+            scene.getRoot().getStylesheets().removeIf(uri -> uri.startsWith("data:text/css"));
+            scene.getRoot().getStylesheets().add("data:text/css;base64," + Base64.getEncoder().encodeToString(css.toString().getBytes(UTF_8)));
+            scene.getRoot().pseudoClassStateChanged(USER_CUSTOM, true);
+        }
+
     }
 
-    public Scene getScene() {
+    public List<Scene> getScene() {
         return scene;
     }
 
-    public void setScene(Scene scene) {
-        this.scene = scene;
+    public void addScene(Scene scene) {
+        this.scene.add(scene);
+        //对新加入scene生效css
+        reloadCustomCSS();
     }
 
     private void setCustomDeclaration(String property, String value) {
