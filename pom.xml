@@ -33,7 +33,7 @@
 
                     <!--          </bundlesList>-->
                     <reflectionList>
-                        <list>caidanci.HelloController</list>
+                        <list>caidanci.SqlTools</list>
                         <list>com.gluonhq.attach</list>
                         <list>com.gluonhq.attach.util.Services</list>
                         <list>com.gluonhq.attach.storage.StorageService</list>
@@ -48,7 +48,9 @@
                         <list>-Dcom.sun.javafx.virtualKeyboard=javafx</list>
                     </runtimeArgs>
                     <target>${gluonfx.target}</target>
-
+                    <nativeImageArgs>
+                        <list>-H:-CheckToolchain</list>
+                    </nativeImageArgs>
                 </configuration>
                 <groupId>com.gluonhq</groupId>
                 <version>${gluonfx.maven.plugin.version}</version>

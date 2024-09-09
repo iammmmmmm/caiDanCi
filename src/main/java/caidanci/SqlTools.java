@@ -64,8 +64,9 @@ public class SqlTools {
             System.out.println("连接数据库成功！");
             getAnswer(5);
             System.out.println("this is check ");
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.err.println("连接数据库失败：" + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -76,10 +77,11 @@ public class SqlTools {
                 connection.close();
                 statement.close();
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
-        System.out.println("关闭数据库连接成功！");
+        System.err.println("关闭数据库连接成功！");
     }
 
     String getAnswer(int limit) {
@@ -94,8 +96,9 @@ public class SqlTools {
                     System.out.println("随机选择的单词：" + resultWord);
                 }
             }
-        } catch (SQLException e) {
-            System.out.println("查询数据库失败：" + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("查询数据库失败：" + e.getMessage());
+            e.printStackTrace();
         }
         return resultWord;
     }
@@ -113,8 +116,10 @@ public class SqlTools {
 
                 }
             }
-        } catch (SQLException e) {
-            System.out.println("查询数据库失败：" + e.getMessage());
+        } catch (Exception e) {
+
+            System.err.println("查询数据库失败：" + e.getMessage());
+            e.printStackTrace();
         }
         return isWord;
     }
@@ -130,8 +135,9 @@ public class SqlTools {
                     resultWord = resultSet.getString("translation");
                 }
             }
-        } catch (SQLException e) {
-            System.out.println("查询数据库失败：" + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("查询数据库失败：" + e.getMessage());
+            e.printStackTrace();
         }
         return resultWord;
     }

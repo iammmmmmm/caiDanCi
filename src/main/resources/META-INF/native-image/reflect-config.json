@@ -70,6 +70,10 @@
   "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.io.InputStream"] }]
 },
 {
+  "name":"com.sun.prism.shader.FillPgram_LinearGradient_PAD_Loader",
+  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.io.InputStream"] }]
+},
+{
   "name":"com.sun.prism.shader.Mask_TextureSuper_Loader",
   "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.io.InputStream"] }]
 },
@@ -262,6 +266,12 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
+  "name":"javafx.scene.control.TextArea",
+  "queryAllDeclaredMethods":true,
+  "queryAllPublicConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
   "name":"javafx.scene.control.TextField",
   "queryAllDeclaredMethods":true,
   "queryAllPublicConstructors":true,
@@ -291,7 +301,12 @@
     {"name":"setRightAnchor","parameterTypes":["javafx.scene.Node","java.lang.Double"] }, 
     {"name":"setTopAnchor","parameterTypes":["javafx.scene.Node","java.lang.Double"] }
   ],
-  "queriedMethods":[{"name":"getBottomAnchor","parameterTypes":["javafx.scene.Node"] }]
+  "queriedMethods":[
+    {"name":"getBottomAnchor","parameterTypes":["javafx.scene.Node"] }, 
+    {"name":"getLeftAnchor","parameterTypes":["javafx.scene.Node"] }, 
+    {"name":"getRightAnchor","parameterTypes":["javafx.scene.Node"] }, 
+    {"name":"getTopAnchor","parameterTypes":["javafx.scene.Node"] }
+  ]
 },
 {
   "name":"javafx.scene.layout.BorderPane",
@@ -337,10 +352,20 @@
   ]
 },
 {
-  "name":"javafx.scene.layout.VBox",
+  "name":"javafx.scene.layout.StackPane",
   "queryAllDeclaredMethods":true,
   "queryAllPublicConstructors":true,
   "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"javafx.scene.layout.VBox",
+  "queryAllDeclaredMethods":true,
+  "queryAllPublicConstructors":true,
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"setAlignment","parameterTypes":["javafx.geometry.Pos"] }, 
+    {"name":"setSpacing","parameterTypes":["double"] }
+  ]
 },
 {
   "name":"javafx.scene.shape.Line"
