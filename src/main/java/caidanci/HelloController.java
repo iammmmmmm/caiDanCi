@@ -84,7 +84,6 @@ public class HelloController {
         }
     }
 
-
     /**
      * 处理输入按钮点击事件
      */
@@ -97,40 +96,38 @@ public class HelloController {
     }
 
     private void inputCheck(String inputText) {
-        Platform.runLater(() -> {
-            if (inputText.isEmpty()) {
-                return;
-            }
-            if (inputText.length() != wordLength) {
-                showAlert(Alert.AlertType.WARNING, "错误！", "输入格式错误！", "你应该输入一个单词，且该单词长度为" + wordLength + "！");
-                return;
-            }
-            if (!checkWord(inputText)) {
-                showAlert(Alert.AlertType.ERROR, "错误！", "输入的单词错误！", "应该输入一个正确的单词");
-                return;
-            }
-            if (inputTime == 0) {
-                showAlert(Alert.AlertType.INFORMATION, "不，你失败了！", "你耗尽了机会！", "答案：" + answerWord + " :\n" + sqlTools.getWordInfo(answerWord));
-                startGame();
-                return;
-            }
-            if (wordList.contains(inputText)) {
-                showAlert(Alert.AlertType.WARNING, "不", "你已经猜过这个单词了！", inputText + " :\n" + sqlTools.getWordInfo(inputText));
-                inputTextFiled.clear();
-                return;
-            }
-            inputTime--;
-            wordList.add(inputText);
-            refresh(inputText);
-            if (inputText.equals(answerWord)) {
-                showAlert(Alert.AlertType.INFORMATION, "胜利！", "恭喜你，成功猜出单词！", answerWord + " :\n" + sqlTools.getWordInfo(answerWord));
-                startGame();
-            }
-            if (inputTime == 0) {
-                showAlert(Alert.AlertType.INFORMATION, "不，你失败了！", "你耗尽了机会！", "答案：" + answerWord + " :\n" + sqlTools.getWordInfo(answerWord));
-                startGame();
-            }
-        });
+        if (inputText.isEmpty()) {
+            return;
+        }
+        if (inputText.length() != wordLength) {
+            showAlert(Alert.AlertType.WARNING, "错误！", "输入格式错误！", "你应该输入一个单词，且该单词长度为" + wordLength + "！");
+            return;
+        }
+        if (!checkWord(inputText)) {
+            showAlert(Alert.AlertType.ERROR, "错误！", "输入的单词错误！", "应该输入一个正确的单词");
+            return;
+        }
+        if (inputTime == 0) {
+            showAlert(Alert.AlertType.INFORMATION, "不，你失败了！", "你耗尽了机会！", "答案：" + answerWord + " :\n" + sqlTools.getWordInfo(answerWord));
+            startGame();
+            return;
+        }
+        if (wordList.contains(inputText)) {
+            showAlert(Alert.AlertType.WARNING, "不", "你已经猜过这个单词了！", inputText + " :\n" + sqlTools.getWordInfo(inputText));
+            inputTextFiled.clear();
+            return;
+        }
+        inputTime--;
+        wordList.add(inputText);
+        refresh(inputText);
+        if (inputText.equals(answerWord)) {
+            showAlert(Alert.AlertType.INFORMATION, "胜利！", "恭喜你，成功猜出单词！", answerWord + " :\n" + sqlTools.getWordInfo(answerWord));
+            startGame();
+        }
+        if (inputTime == 0) {
+            showAlert(Alert.AlertType.INFORMATION, "不，你失败了！", "你耗尽了机会！", "答案：" + answerWord + " :\n" + sqlTools.getWordInfo(answerWord));
+            startGame();
+        }
     }
 
     /**
@@ -169,10 +166,10 @@ public class HelloController {
      */
     @FXML
     void initialize() {
-        Application.setUserAgentStylesheet(theme[themeFlag]);
         Font a = Font.loadFont(Objects.requireNonNull(this.getClass().getResourceAsStream("fonts/fzjt.ttf")), 20);
         Platform.runLater(() -> tm.setFontFamily(a.getFamily()));
         tools.makeFontFamilyChooser(fontChose);
+        Platform.runLater(() -> Application.setUserAgentStylesheet(theme[themeFlag]));
         changeTheme.setGraphic(new FontIcon(BootstrapIcons.MOON));
         info.setGraphic(new FontIcon(BootstrapIcons.INFO_CIRCLE));
         startGame.setText("开始游戏");
@@ -283,7 +280,7 @@ public class HelloController {
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
-        alert.setOnHiding(event -> tm.removeScene(alert.getDialogPane().getScene()));
-        alert.show();
+        alert.initOwner(inputTextFiled.getScene().getWindow());
+        alert.showAndWait();
     }
 }

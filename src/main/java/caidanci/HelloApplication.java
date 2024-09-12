@@ -17,16 +17,15 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        var size = tools.screenAutoSize(330, 600);
+        var size = tools.screenAutoSize(440, 800);
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, size[0], size[1]);
 
         var tm = ThemeManager.getInstance();
         tm.addScene(scene);
-
+        stage.setScene(scene);
         stage.setTitle("Hello!");
         stage.setResizable(false);
-        stage.setScene(scene);
         stage.show();
     }
 }

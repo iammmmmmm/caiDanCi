@@ -4,7 +4,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -36,7 +35,6 @@
                         <Button fx:id="info" mnemonicParsing="false" onMouseClicked="#infoButtonClicked" />
                         <ComboBox fx:id="fontChose" prefWidth="150.0" />
                     </FlowPane>
-               <TextArea prefHeight="79.0" prefWidth="337.0" />
                 </VBox>
             </center>
         </BorderPane>
