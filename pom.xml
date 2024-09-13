@@ -44,12 +44,10 @@
                         <list>caidanci/fonts/ArimoNerdFont-Regular.ttf</list>
                     </resourcesList>
                     <runtimeArgs>
-                        <list>-Dcom.sun.javafx.isEmbedded=true</list>
-                        <list>-Dcom.sun.javafx.virtualKeyboard=javafx</list>
                     </runtimeArgs>
                     <target>${gluonfx.target}</target>
                     <nativeImageArgs>
-                        <list>-H:-CheckToolchain</list>
+                        <!--                        <list>-H:-CheckToolchain</list>-->
                     </nativeImageArgs>
                 </configuration>
                 <groupId>com.gluonhq</groupId>
