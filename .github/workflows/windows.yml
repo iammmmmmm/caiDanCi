@@ -24,9 +24,6 @@ jobs:
       - name: Make staging directory
         run: mkdir staging
 
-      - name: Set execute permission
-        run: chmod +x ./mvnw
-
       - name: Gluon Build and Package
         shell: cmd
         run: .\mvnw -Pdesktop gluonfx:build gluonfx:package
