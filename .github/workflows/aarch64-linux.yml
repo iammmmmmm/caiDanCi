@@ -1,0 +1,38 @@
+name: Embedded - AArch64 Linux
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Gluon's GraalVM
+        uses: gluonhq/setup-graalvm@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install libraries
+        run: |
+          sudo apt-get update
+          sudo apt install libasound2-dev libavcodec-dev libavformat-dev libavutil-dev libgl-dev libgtk-3-dev libpango1.0-dev libxtst-dev
+          sudo apt install g++-aarch64-linux-gnu 
+
+      - name: Make staging directory
+        run: mkdir staging
+
+
+      - name: Gluon Build
+        run: ./mvnw -Ppi gluonfx:build gluonfx:package
+
+      - name: Copy native image to staging
+        run: cp -r target/gluonfx/aarch64-linux/HelloApplication* staging
+
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: Package
+          path: staging
