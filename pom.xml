@@ -4,6 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <artifactId>caiDanCi</artifactId>
     <version>0.0.4</version>
+    <properties>
+        <attach.version>4.0.21</attach.version>
+        <gluonfx.maven.plugin.version>1.0.23</gluonfx.maven.plugin.version>
+        <gluonfx.target>host</gluonfx.target>
+        <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
+        <javafx.version>22.0.2</javafx.version>
+        <main.class>caidanci.HelloApplication</main.class>
+        <maven.compiler.release>17</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -138,7 +149,9 @@
         </profile>
         <profile>
             <id>android</id>
+
             <properties>
+                <app.identifier>org.iam.caidanci</app.identifier>
                 <gluonfx.target>android</gluonfx.target>
             </properties>
         </profile>
@@ -149,21 +162,6 @@
             </properties>
         </profile>
     </profiles>
-
-    <properties>
-        <attach.version>4.0.21</attach.version>
-        <charm.cloudlink.version>6.0.7</charm.cloudlink.version>
-        <charm.version>6.2.3</charm.version>
-        <connect.version>2.0.1</connect.version>
-        <glisten.afterburner.version>2.1.0</glisten.afterburner.version>
-        <gluonfx.maven.plugin.version>1.0.23</gluonfx.maven.plugin.version>
-        <gluonfx.target>host</gluonfx.target>
-        <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
-        <javafx.version>22.0.2</javafx.version>
-        <main.class>caidanci.HelloApplication</main.class>
-        <maven.compiler.release>17</maven.compiler.release>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
 
 </project>
