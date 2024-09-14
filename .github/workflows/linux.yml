@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checkout your code
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       # Make sure the latest GraalVM is installed.
       # after this step env.JAVA_HOME and env.GRAALVM_HOME will point to the GraalVM location
@@ -18,6 +18,12 @@ jobs:
         # set GITHUB_TOKEN to avoid exceeding GitHub's API rate limit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '23'
 
       # Install extra required packaged on top of ubuntu-latest
       - name: Install libraries
