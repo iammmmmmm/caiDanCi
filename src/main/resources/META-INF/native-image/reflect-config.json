@@ -11,7 +11,7 @@
   "type":"caidanci.HelloController",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
-  "methods":[{"name":"<init>","parameterTypes":[] },{"name":"changeTheme","parameterTypes":[] },{"name":"infoButtonClicked","parameterTypes":[] },{"name":"initialize","parameterTypes":[] },{"name":"inputFiledKeyRelease","parameterTypes":["javafx.scene.input.KeyEvent"] },{"name":"startGame","parameterTypes":[] }]
+  "methods":[{"name":"<init>","parameterTypes":[] },{"name":"changeTheme","parameterTypes":[] },{"name":"infoButtonClicked","parameterTypes":[] },{"name":"initialize","parameterTypes":[] },{"name":"startGame","parameterTypes":[] }]
 },
 {
   "type":"caidanci.HelloController",
@@ -29,14 +29,15 @@
   "type":"com.sun.glass.ui.Screen"
 },
 {
-  "type":"com.sun.glass.ui.Screen"
-},
-{
   "type":"com.sun.javafx.font.directwrite.DWFactory",
   "methods":[{"name":"getFactory","parameterTypes":[] }]
 },
 {
-  "type":"com.sun.javafx.font.directwrite.DWFactory",
+  "type":"com.sun.javafx.font.freetype.FTFactory",
+  "methods":[{"name":"getFactory","parameterTypes":[] }]
+},
+{
+  "type":"com.sun.javafx.font.freetype.FTFactory",
   "methods":[{"name":"getFactory","parameterTypes":[] }]
 },
 {
@@ -89,51 +90,35 @@
 },
 {
   "type":"com.sun.prism.shader.DrawPgram_Color_Loader",
-  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.io.InputStream"] }]
-},
-{
-  "type":"com.sun.prism.shader.DrawPgram_Color_Loader",
-  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.lang.String","java.io.InputStream"] }]
+  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.io.InputStream"] },{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.lang.String","java.io.InputStream"] }]
 },
 {
   "type":"com.sun.prism.shader.DrawRoundRect_Color_Loader",
-  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.lang.String","java.io.InputStream"] }]
-},
-{
-  "type":"com.sun.prism.shader.DrawRoundRect_Color_Loader",
-  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.io.InputStream"] }]
+  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.io.InputStream"] },{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.lang.String","java.io.InputStream"] }]
 },
 {
   "type":"com.sun.prism.shader.FillPgram_Color_Loader",
-  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.io.InputStream"] }]
-},
-{
-  "type":"com.sun.prism.shader.FillPgram_Color_Loader",
-  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.lang.String","java.io.InputStream"] }]
+  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.io.InputStream"] },{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.lang.String","java.io.InputStream"] }]
 },
 {
   "type":"com.sun.prism.shader.Mask_TextureSuper_Loader",
-  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.lang.String","java.io.InputStream"] }]
-},
-{
-  "type":"com.sun.prism.shader.Mask_TextureSuper_Loader",
-  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.io.InputStream"] }]
+  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.io.InputStream"] },{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.lang.String","java.io.InputStream"] }]
 },
 {
   "type":"com.sun.prism.shader.Solid_TextureRGB_Loader",
-  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.lang.String","java.io.InputStream"] }]
-},
-{
-  "type":"com.sun.prism.shader.Solid_TextureRGB_Loader",
-  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.io.InputStream"] }]
+  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.io.InputStream"] },{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.lang.String","java.io.InputStream"] }]
 },
 {
   "type":"com.sun.prism.shader.Texture_Color_Loader",
-  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.lang.String","java.io.InputStream"] }]
+  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.io.InputStream"] },{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.lang.String","java.io.InputStream"] }]
 },
 {
-  "type":"com.sun.prism.shader.Texture_Color_Loader",
-  "methods":[{"name":"loadShader","parameterTypes":["com.sun.prism.ps.ShaderFactory","java.io.InputStream"] }]
+  "type":"com.sun.prism.sw.SWPipeline",
+  "methods":[{"name":"getInstance","parameterTypes":[] }]
+},
+{
+  "type":"com.sun.prism.sw.SWPipeline",
+  "methods":[{"name":"getInstance","parameterTypes":[] }]
 },
 {
   "type":"com.sun.scenario.effect.impl.prism.PrRenderer",
@@ -148,16 +133,24 @@
   "methods":[{"name":"<init>","parameterTypes":["com.sun.scenario.effect.FilterContext","com.sun.scenario.effect.impl.Renderer","java.lang.String"] }]
 },
 {
-  "type":"com.sun.scenario.effect.impl.prism.ps.PPSLinearConvolveShadowPeer",
-  "methods":[{"name":"<init>","parameterTypes":["com.sun.scenario.effect.FilterContext","com.sun.scenario.effect.impl.Renderer","java.lang.String"] }]
-},
-{
   "type":"com.sun.scenario.effect.impl.prism.ps.PPSRenderer",
   "methods":[{"name":"createRenderer","parameterTypes":["com.sun.scenario.effect.FilterContext"] }]
 },
 {
-  "type":"com.sun.scenario.effect.impl.prism.ps.PPSRenderer",
+  "type":"com.sun.scenario.effect.impl.prism.sw.PSWRenderer",
   "methods":[{"name":"createRenderer","parameterTypes":["com.sun.scenario.effect.FilterContext"] }]
+},
+{
+  "type":"com.sun.scenario.effect.impl.prism.sw.PSWRenderer",
+  "methods":[{"name":"createRenderer","parameterTypes":["com.sun.scenario.effect.FilterContext"] }]
+},
+{
+  "type":"com.sun.scenario.effect.impl.sw.sse.SSERendererDelegate",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "type":"com.sun.scenario.effect.impl.sw.sse.SSERendererDelegate",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
   "type":"com.sun.xml.internal.stream.XMLInputFactoryImpl",
@@ -233,6 +226,9 @@
 {
   "type":"java.util.concurrent.atomic.AtomicReference",
   "fields":[{"name":"value"}]
+},
+{
+  "type":"javafx.animation.Interpolator"
 },
 {
   "type":"javafx.animation.Interpolator"
@@ -513,9 +509,6 @@
   "type":"javafx.scene.shape.Line"
 },
 {
-  "type":"javafx.scene.shape.Line"
-},
-{
   "type":"javafx.scene.shape.LineTo"
 },
 {
@@ -768,10 +761,6 @@
 {
   "type":"sun.misc.Unsafe",
   "fields":[{"name":"theUnsafe"}]
-},
-{
-  "type":"sun.security.provider.DRBG",
-  "methods":[{"name":"<init>","parameterTypes":["java.security.SecureRandomParameters"] }]
 },
 {
   "type":"sun.security.provider.DRBG",
@@ -780,6 +769,18 @@
 {
   "type":"sun.security.provider.MD5",
   "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "type":"sun.security.provider.MD5",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "type":"sun.security.provider.NativePRNG",
+  "methods":[{"name":"<init>","parameterTypes":["java.security.SecureRandomParameters"] }]
+},
+{
+  "type":"sun.security.provider.NativePRNG",
+  "methods":[{"name":"<init>","parameterTypes":["java.security.SecureRandomParameters"] }]
 },
 {
   "type":"sun.security.provider.SHA",

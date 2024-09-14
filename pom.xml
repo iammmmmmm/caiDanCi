@@ -51,6 +51,8 @@
 
                     <!--          </bundlesList>-->
                     <reflectionList>
+                        <list>caidanci.HelloApplication</list>
+                        <list>caidanci.HelloController</list>
                         <list>caidanci.SqlTools</list>
                         <list>com.gluonhq.attach</list>
                         <list>com.gluonhq.attach.util.Services</list>
