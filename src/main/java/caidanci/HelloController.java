@@ -9,10 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import org.kordamp.ikonli.bootstrapicons.BootstrapIcons;
@@ -27,6 +24,8 @@ public class HelloController {
     private final SqlTools sqlTools = new SqlTools();
     private final ThemeManager tm = ThemeManager.getInstance();
     String[] theme = {new PrimerLight().getUserAgentStylesheet(), new PrimerDark().getUserAgentStylesheet()};
+    @FXML
+    private Spinner<Integer> fontSize;
     /**
      * 主题 0 默认 1 暗黑
      */
@@ -35,6 +34,7 @@ public class HelloController {
      * 单词长度
      */
     private int wordLength = 5;
+    private String yellowWords = "";
     private int inputTime = 0;
     private boolean gameIsStart = false;
     private String answerWord = "12345";
@@ -56,6 +56,8 @@ public class HelloController {
     private Button startGame;
     @FXML
     private ComboBox<String> fontChose;
+    @FXML
+    private Button showHint;
 
     /**
      * 切换主题
@@ -120,9 +122,11 @@ public class HelloController {
         inputTime--;
         wordList.add(inputText);
         refresh(inputText);
+        inputTimeUpdate();
         if (inputText.equals(answerWord)) {
             showAlert(Alert.AlertType.INFORMATION, "胜利！", "恭喜你，成功猜出单词！", answerWord + " :\n" + sqlTools.getWordInfo(answerWord));
             startGame();
+            return;
         }
         if (inputTime == 0) {
             showAlert(Alert.AlertType.INFORMATION, "不，你失败了！", "你耗尽了机会！", "答案：" + answerWord + " :\n" + sqlTools.getWordInfo(answerWord));
@@ -130,12 +134,44 @@ public class HelloController {
         }
     }
 
+    private void getYellowWord() {
+        StringBuilder sb = new StringBuilder();
+        for (var c : wordList) {
+            char[] chars = c.toCharArray();
+            for (var ch : chars) {
+                if (answerWord.contains(String.valueOf(ch))) {
+                    sb.append(ch);
+                }
+            }
+        }
+        this.yellowWords = sb.toString();
+    }
+
+    private String retain(String str, String keepChar) {
+        StringBuilder sb = new StringBuilder();
+        for (var c : str.toCharArray()) {
+            if (keepChar.indexOf(c) != -1) {
+                sb.append(c);
+            } else {
+                sb.append(" ");
+            }
+        }
+        return sb.toString();
+    }
+
     /**
      * 刷新显示
      */
     private void refresh(String inputText) {
+        refresh(inputText, outputGrid);
+    }
+
+    /**
+     * 刷新显示
+     */
+    private void refresh(String inputText, GridPane gridPane) {
         int charSize = 40; // 每个字符的大小
-        outputGrid.setAlignment(Pos.CENTER); // 居中对齐
+        gridPane.setAlignment(Pos.CENTER); // 居中对齐
 
         // 将字符串分割成字符数组，并在每个格子中添加一个标签
         char[] chars = inputText.toCharArray();
@@ -145,11 +181,11 @@ public class HelloController {
             label.setPrefSize(charSize, charSize);
             label.setAlignment(Pos.CENTER); // 居中对齐
             label.setBackground(new Background(new BackgroundFill(getColor(temp, i), CornerRadii.EMPTY, null)));
-            label.setStyle("-fx-border-color: black; -fx-border-width: 1px;"); // 设置边框样式
-            outputGrid.add(label, i, rowIndex); // 放置在第一行的不同列
+            label.setFont(inputButton.getFont());//与全局字体同步
+            label.setStyle("-fx-border-color: black; -fx-border-width: 1px;-fx-font-size: %d;".formatted(charSize)); // 设置边框样式
+            gridPane.add(label, i, rowIndex); // 放置在第一行的不同列
         }
         rowIndex++;
-        inputTimeUpdate();
     }
 
     /**
@@ -166,17 +202,15 @@ public class HelloController {
      */
     @FXML
     void initialize() {
-        Font a = Font.loadFont(Objects.requireNonNull(this.getClass().getResourceAsStream("fonts/fzjt.ttf")), 20);
+        Font a = Font.loadFont(Objects.requireNonNull(this.getClass().getResourceAsStream("fonts/fzjt.ttf")), 0);
         Platform.runLater(() -> tm.setFontFamily(a.getFamily()));
         tools.makeFontFamilyChooser(fontChose);
+        tools.makeFontSizeChooser(fontSize);
         Platform.runLater(() -> Application.setUserAgentStylesheet(theme[themeFlag]));
         changeTheme.setGraphic(new FontIcon(BootstrapIcons.MOON));
         info.setGraphic(new FontIcon(BootstrapIcons.INFO_CIRCLE));
-        startGame.setText("开始游戏");
-        levelChose.setDisable(false);
-        inputButton.setDisable(true);
-        inputTextFiled.setDisable(true);
         gameIsStart = false;
+        startGame();
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(3, 10, wordLength);
         levelChose.setValueFactory(valueFactory);
         levelChose.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -184,6 +218,7 @@ public class HelloController {
             inputTimeUpdate();
         });
         inputTimeUpdate();
+        this.yellowWords = "";
     }
 
     /**
@@ -195,7 +230,7 @@ public class HelloController {
     }
 
     /**
-     * 获取颜色
+     * 获取颜色并
      */
     private Color getColor(String letter, int index) {
         if (answerWord.contains(letter)) {
@@ -236,12 +271,13 @@ public class HelloController {
      */
     @FXML
     void startGame() {
-        if (gameIsStart) {
+        if (!gameIsStart) {
             startGame.setText("开始游戏");
             levelChose.setDisable(false);
             inputButton.setDisable(true);
             inputTextFiled.setDisable(true);
-            gameIsStart = false;
+            showHint.setDisable(true);
+            gameIsStart = true;
             reset();
         } else {
             answerUpdate();
@@ -249,10 +285,12 @@ public class HelloController {
             levelChose.setDisable(true);
             inputButton.setDisable(false);
             inputTextFiled.setDisable(false);
-            gameIsStart = true;
+            showHint.setDisable(false);
+            gameIsStart = false;
             wordList = new ArrayList<>();
+            inputTimeUpdate();
         }
-        inputTimeUpdate();
+        this.yellowWords = "";
     }
 
     /**
@@ -280,7 +318,27 @@ public class HelloController {
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
-        alert.initOwner(inputTextFiled.getScene().getWindow());
+
         alert.showAndWait();
+    }
+
+    @FXML
+    void showHint() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initOwner(inputTextFiled.getScene().getWindow());
+        tm.addScene(alert.getDialogPane().getScene());
+        alert.setTitle("提示");
+        alert.setHeaderText(null);
+        // 创建自定义的内容
+        VBox content = new VBox();
+        // 添加自定义的节点，比如一个进度条
+        GridPane gridPane = new GridPane();
+        getYellowWord();
+        refresh(retain(answerWord, yellowWords), gridPane);
+        content.getChildren().add(gridPane);
+
+        // 设置对话框的内容
+        alert.getDialogPane().setContent(content);
+        alert.show();
     }
 }

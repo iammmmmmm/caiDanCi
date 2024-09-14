@@ -17,6 +17,7 @@ public class ThemeManager {
     private final Map<String, String> customCSSRules = new LinkedHashMap<>(); // .foo | -fx-property: value;
     private final List<Scene> scene = new ArrayList<>();
     private String fontFamily = "FZKai-Z03S";
+    private Integer fontSize;
 
     public static ThemeManager getInstance() {
         return InstanceHolder.INSTANCE;
@@ -50,7 +51,6 @@ public class ThemeManager {
             css.append("}\n");
         });
         for (Scene scene : getScene()) {
-
             scene.getRoot().getStylesheets().removeIf(uri -> uri.startsWith("data:text/css"));
             scene.getRoot().getStylesheets().add("data:text/css;base64," + Base64.getEncoder().encodeToString(css.toString().getBytes(UTF_8)));
             scene.getRoot().pseudoClassStateChanged(USER_CUSTOM, true);
@@ -87,6 +87,14 @@ public class ThemeManager {
 
     public void removeScene(Scene scene) {
         this.scene.remove(scene);
+    }
+
+    public void setFontSize(Integer fontSize) {
+
+        setCustomDeclaration("-fx-font-size", fontSize.toString());
+
+        this.fontSize = fontSize;
+
         reloadCustomCSS();
     }
 

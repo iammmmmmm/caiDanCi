@@ -5,6 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 
@@ -81,5 +83,17 @@ public class tools {
                 }
             }
         });
+    }
+
+    public static void makeFontSizeChooser(Spinner<Integer> fontSize) {
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(
+                8, 72, 14);
+        fontSize.setValueFactory(valueFactory);
+        var tm = ThemeManager.getInstance();
+        // 添加监听器，当Spinner值改变时，更新Label的字体大小
+        fontSize.valueProperty().addListener((observable, oldValue, newValue) -> {
+            tm.setFontSize(newValue);
+        });
+
     }
 }
