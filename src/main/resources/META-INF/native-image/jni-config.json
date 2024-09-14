@@ -3,8 +3,19 @@
   "type":"[Lcom.sun.glass.ui.Screen;"
 },
 {
+  "type":"[Lcom.sun.glass.ui.Screen;"
+},
+{
   "type":"com.sun.glass.ui.Cursor",
   "methods":[{"name":"getNativeCursor","parameterTypes":[] },{"name":"getType","parameterTypes":[] }]
+},
+{
+  "type":"com.sun.glass.ui.Cursor",
+  "methods":[{"name":"getNativeCursor","parameterTypes":[] },{"name":"getType","parameterTypes":[] }]
+},
+{
+  "type":"com.sun.glass.ui.Screen",
+  "methods":[{"name":"<init>","parameterTypes":["long","int","int","int","int","int","int","int","int","int","int","int","int","int","int","int","float","float","float","float"] }]
 },
 {
   "type":"com.sun.glass.ui.Screen",
@@ -15,8 +26,22 @@
   "methods":[{"name":"<init>","parameterTypes":["int","int"] }]
 },
 {
+  "type":"com.sun.glass.ui.Size",
+  "methods":[{"name":"<init>","parameterTypes":["int","int"] }]
+},
+{
   "type":"com.sun.javafx.font.directwrite.D2D1_COLOR_F",
   "fields":[{"name":"a"},{"name":"b"},{"name":"g"},{"name":"r"}],
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "type":"com.sun.javafx.font.directwrite.D2D1_COLOR_F",
+  "fields":[{"name":"a"},{"name":"b"},{"name":"g"},{"name":"r"}],
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "type":"com.sun.javafx.font.directwrite.D2D1_MATRIX_3X2_F",
+  "fields":[{"name":"_11"},{"name":"_12"},{"name":"_21"},{"name":"_22"},{"name":"_31"},{"name":"_32"}],
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
@@ -30,8 +55,23 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
+  "type":"com.sun.javafx.font.directwrite.D2D1_PIXEL_FORMAT",
+  "fields":[{"name":"alphaMode"},{"name":"format"}],
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
   "type":"com.sun.javafx.font.directwrite.D2D1_POINT_2F",
   "fields":[{"name":"x"},{"name":"y"}],
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "type":"com.sun.javafx.font.directwrite.D2D1_POINT_2F",
+  "fields":[{"name":"x"},{"name":"y"}],
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "type":"com.sun.javafx.font.directwrite.D2D1_RENDER_TARGET_PROPERTIES",
+  "fields":[{"name":"dpiX"},{"name":"dpiY"},{"name":"minLevel"},{"name":"pixelFormat"},{"name":"type"},{"name":"usage"}],
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
@@ -45,6 +85,16 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
+  "type":"com.sun.javafx.font.directwrite.DWRITE_GLYPH_METRICS",
+  "fields":[{"name":"advanceHeight"},{"name":"advanceWidth"},{"name":"bottomSideBearing"},{"name":"leftSideBearing"},{"name":"rightSideBearing"},{"name":"topSideBearing"},{"name":"verticalOriginY"}],
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "type":"com.sun.javafx.font.directwrite.DWRITE_GLYPH_RUN",
+  "fields":[{"name":"advanceOffset"},{"name":"ascenderOffset"},{"name":"bidiLevel"},{"name":"fontEmSize"},{"name":"fontFace"},{"name":"glyphAdvances"},{"name":"glyphIndices"},{"name":"isSideways"}],
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
   "type":"com.sun.javafx.font.directwrite.DWRITE_GLYPH_RUN",
   "fields":[{"name":"advanceOffset"},{"name":"ascenderOffset"},{"name":"bidiLevel"},{"name":"fontEmSize"},{"name":"fontFace"},{"name":"glyphAdvances"},{"name":"glyphIndices"},{"name":"isSideways"}],
   "methods":[{"name":"<init>","parameterTypes":[] }]
@@ -55,12 +105,29 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
+  "type":"com.sun.javafx.font.directwrite.RECT",
+  "fields":[{"name":"bottom"},{"name":"left"},{"name":"right"},{"name":"top"}],
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "type":"com.sun.prism.impl.PrismSettings",
+  "fields":[{"name":"forceGPU"},{"name":"isVsyncEnabled"},{"name":"verbose"}]
+},
+{
   "type":"com.sun.prism.impl.PrismSettings",
   "fields":[{"name":"disableD3D9Ex"},{"name":"forceGPU"},{"name":"isVsyncEnabled"},{"name":"verbose"}]
 },
 {
   "type":"java.lang.Boolean",
   "fields":[{"name":"FALSE"},{"name":"TRUE"}]
+},
+{
+  "type":"java.lang.Boolean",
+  "fields":[{"name":"FALSE"},{"name":"TRUE"}]
+},
+{
+  "type":"java.lang.Class",
+  "methods":[{"name":"forName","parameterTypes":["java.lang.String","boolean","java.lang.ClassLoader"] }]
 },
 {
   "type":"java.lang.Class",
@@ -75,8 +142,20 @@
   "methods":[{"name":"equals","parameterTypes":["java.lang.Object"] }]
 },
 {
+  "type":"java.lang.Object",
+  "methods":[{"name":"equals","parameterTypes":["java.lang.Object"] }]
+},
+{
   "type":"java.lang.Runnable",
   "methods":[{"name":"run","parameterTypes":[] }]
+},
+{
+  "type":"java.lang.Runnable",
+  "methods":[{"name":"run","parameterTypes":[] }]
+},
+{
+  "type":"java.lang.String",
+  "methods":[{"name":"toLowerCase","parameterTypes":["java.util.Locale"] }]
 },
 {
   "type":"java.lang.String",
@@ -87,6 +166,14 @@
   "methods":[{"name":"<init>","parameterTypes":["int"] },{"name":"add","parameterTypes":["java.lang.Object"] }]
 },
 {
+  "type":"java.util.ArrayList",
+  "methods":[{"name":"<init>","parameterTypes":["int"] },{"name":"add","parameterTypes":["java.lang.Object"] }]
+},
+{
+  "type":"java.util.Collections",
+  "methods":[{"name":"unmodifiableMap","parameterTypes":["java.util.Map"] }]
+},
+{
   "type":"java.util.Collections",
   "methods":[{"name":"unmodifiableMap","parameterTypes":["java.util.Map"] }]
 },
@@ -95,8 +182,20 @@
   "methods":[{"name":"<init>","parameterTypes":[] },{"name":"containsKey","parameterTypes":["java.lang.Object"] },{"name":"put","parameterTypes":["java.lang.Object","java.lang.Object"] }]
 },
 {
+  "type":"java.util.HashMap",
+  "methods":[{"name":"<init>","parameterTypes":[] },{"name":"containsKey","parameterTypes":["java.lang.Object"] },{"name":"put","parameterTypes":["java.lang.Object","java.lang.Object"] }]
+},
+{
   "type":"java.util.Map",
   "methods":[{"name":"put","parameterTypes":["java.lang.Object","java.lang.Object"] }]
+},
+{
+  "type":"java.util.Map",
+  "methods":[{"name":"put","parameterTypes":["java.lang.Object","java.lang.Object"] }]
+},
+{
+  "type":"javafx.scene.paint.Color",
+  "methods":[{"name":"rgb","parameterTypes":["int","int","int","double"] }]
 },
 {
   "type":"javafx.scene.paint.Color",

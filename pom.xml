@@ -11,12 +11,12 @@
 
     <properties>
         <attach.version>4.0.21</attach.version>
-        <gluonfx.maven.plugin.version>1.0.23</gluonfx.maven.plugin.version>
+        <gluonfx.maven.plugin.version>1.0.24-SNAPSHOT</gluonfx.maven.plugin.version>
         <gluonfx.target>host</gluonfx.target>
         <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
         <javafx.version>24-ea+5</javafx.version>
         <main.class>caidanci.HelloApplication</main.class>
-        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.release>23</maven.compiler.release>
         <app.identifier>${main.class}</app.identifier>
         <app.description>The CaiDanCi app</app.description>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -165,5 +165,22 @@
         </profile>
     </profiles>
 
+    <repositories>
+        <repository>
+            <id>Gluon</id>
+            <url>https://nexus.gluonhq.com/nexus/content/repositories/releases</url>
+        </repository>
+        <repository>
+            <id>snapshot</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>snapshot</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>

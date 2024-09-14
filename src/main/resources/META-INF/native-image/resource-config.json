@@ -2733,6 +2733,10 @@
   },{
     "pattern":"caiDanCi:\\Qcaidanci\/hello-view.fxml\\E"
   },{
+    "pattern":"java.base:\\Qjava\/lang\/Boolean.class\\E"
+  },{
+    "pattern":"java.base:\\Qjava\/lang\/Byte.class\\E"
+  },{
     "pattern":"java.base:\\Qjava\/lang\/Class.class\\E"
   },{
     "pattern":"java.base:\\Qjava\/lang\/Double.class\\E"
@@ -5579,6 +5583,8 @@
   },{
     "pattern":"javafx.graphics:\\Qcom\/sun\/javafx\/tk\/quantum\/QuantumMessagesBundle_zh_Hans_CN.properties\\E"
   },{
+    "pattern":"javafx.graphics:\\Qcom\/sun\/prism\/d3d\/hlsl\/DrawPgram_Color.obj\\E"
+  },{
     "pattern":"javafx.graphics:\\Qcom\/sun\/prism\/d3d\/hlsl\/DrawRoundRect_Color.obj\\E"
   },{
     "pattern":"javafx.graphics:\\Qcom\/sun\/prism\/d3d\/hlsl\/FillPgram_Color.obj\\E"
@@ -5588,6 +5594,8 @@
     "pattern":"javafx.graphics:\\Qcom\/sun\/prism\/d3d\/hlsl\/Solid_TextureRGB.obj\\E"
   },{
     "pattern":"javafx.graphics:\\Qcom\/sun\/prism\/d3d\/hlsl\/Texture_Color.obj\\E"
+  },{
+    "pattern":"javafx.graphics:\\Qcom\/sun\/scenario\/effect\/impl\/hw\/d3d\/hlsl\/LinearConvolveShadow_16.obj\\E"
   },{
     "pattern":"javafx.graphics:\\Qcom\/sun\/scenario\/effect\/impl\/hw\/d3d\/hlsl\/LinearConvolveShadow_20.obj\\E"
   },{
@@ -5609,6 +5617,8 @@
   },{
     "pattern":"javafx.graphics:\\Qvcruntime140_1.dll\\E"
   },{
+    "pattern":"jdk.graal.compiler:\\Qjdk\/graal\/compiler\/hotspot\/HotSpotBackend.class\\E"
+  },{
     "pattern":"jdk.graal.compiler:\\Qjdk\/graal\/compiler\/hotspot\/replacements\/ClassGetHubNode.class\\E"
   },{
     "pattern":"jdk.graal.compiler:\\Qjdk\/graal\/compiler\/hotspot\/replacements\/HotSpotAllocationSnippets.class\\E"
@@ -5627,7 +5637,11 @@
   },{
     "pattern":"jdk.graal.compiler:\\Qjdk\/graal\/compiler\/hotspot\/replacements\/ObjectCloneSnippets.class\\E"
   },{
+    "pattern":"jdk.graal.compiler:\\Qjdk\/graal\/compiler\/hotspot\/replacements\/ObjectSnippets.class\\E"
+  },{
     "pattern":"jdk.graal.compiler:\\Qjdk\/graal\/compiler\/hotspot\/replacements\/TypeCheckSnippetUtils.class\\E"
+  },{
+    "pattern":"jdk.graal.compiler:\\Qjdk\/graal\/compiler\/hotspot\/replacements\/UnsafeSnippets.class\\E"
   },{
     "pattern":"jdk.graal.compiler:\\Qjdk\/graal\/compiler\/hotspot\/replacements\/arraycopy\/HotSpotArraycopySnippets.class\\E"
   },{
@@ -5658,6 +5672,8 @@
     "pattern":"jdk.graal.compiler:\\Qjdk\/graal\/compiler\/replacements\/SnippetCounter.class\\E"
   },{
     "pattern":"jdk.graal.compiler:\\Qjdk\/graal\/compiler\/replacements\/SnippetIntegerHistogram.class\\E"
+  },{
+    "pattern":"jdk.graal.compiler:\\Qjdk\/graal\/compiler\/replacements\/StringLatin1Snippets.class\\E"
   },{
     "pattern":"jdk.graal.compiler:\\Qjdk\/graal\/compiler\/replacements\/arraycopy\/ArrayCopyCallNode.class\\E"
   },{
