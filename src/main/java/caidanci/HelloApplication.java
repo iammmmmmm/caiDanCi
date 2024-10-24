@@ -20,9 +20,6 @@ public class HelloApplication extends Application {
         var size = tools.screenAutoSize(440, 800);
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, size[0], size[1]);
-
-        var tm = ThemeManager.getInstance();
-        tm.addScene(scene);
         stage.setScene(scene);
         stage.setTitle("Hello!");
         stage.setResizable(false);
