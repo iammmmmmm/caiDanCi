@@ -202,9 +202,12 @@ public class HelloController {
      */
     @FXML
     void initialize() {
+
         Font a = Font.loadFont(Objects.requireNonNull(this.getClass().getResourceAsStream("fonts/fzjt.ttf")), 0);
-        Platform.runLater(() -> tm.setFontFamily(a.getFamily()));
-        tools.makeFontFamilyChooser(fontChose);
+Platform.runLater(() -> tm.setFontFamily(a.getFamily()));
+        Platform.runLater(() -> tm.addScene(info.getScence()));
+
+ tools.makeFontFamilyChooser(fontChose);
         tools.makeFontSizeChooser(fontSize);
         Platform.runLater(() -> Application.setUserAgentStylesheet(theme[themeFlag]));
         changeTheme.setGraphic(new FontIcon(BootstrapIcons.MOON));
