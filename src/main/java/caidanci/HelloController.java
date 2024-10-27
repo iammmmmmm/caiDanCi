@@ -233,7 +233,7 @@ Platform.runLater(() -> tm.setFontFamily(a.getFamily()));
     }
 
     /**
-     * 获取颜色并
+     * 获取颜色
      */
     private Color getColor(String letter, int index) {
         if (answerWord.contains(letter)) {
@@ -321,7 +321,7 @@ Platform.runLater(() -> tm.setFontFamily(a.getFamily()));
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
-
+alert.initOwner(inputTextFiled.getScene().getWindow());
         alert.showAndWait();
     }
 
