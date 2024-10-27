@@ -204,6 +204,7 @@ public class HelloController {
     void initialize() {
 
         Font a = Font.loadFont(Objects.requireNonNull(this.getClass().getResourceAsStream("fonts/fzjt.ttf")), 0);
+showAlert(Alert.AlertType.WARNING, "错误！", "！", "font.getFamily:" + a.getFamily()+"！");
 Platform.runLater(() -> tm.setFontFamily(a.getFamily()));
         Platform.runLater(() -> tm.addScene(info.getScene()));
 
