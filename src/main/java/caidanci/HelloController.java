@@ -215,7 +215,7 @@ Platform.runLater(() -> tm.setFontFamily(a.getFamily()));
         info.setGraphic(new FontIcon(BootstrapIcons.INFO_CIRCLE));
         gameIsStart = false;
         startGame();
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(3, 10, wordLength);
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 46, wordLength);
         levelChose.setValueFactory(valueFactory);
         levelChose.valueProperty().addListener((observable, oldValue, newValue) -> {
             wordLength = newValue;
