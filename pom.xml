@@ -61,7 +61,7 @@
                     <resourcesList>
                         <list>caidanci/caidanci.mv.db</list>
                         <list>caidanci/caidanci.trace.db</list>
-                        <list>caidanci/fonts/ArimoNerdFont-Regular.ttf</list>
+                        <list>caidanci/fonts/fzjt.ttf</list>
                     </resourcesList>
                     <runtimeArgs>
                     </runtimeArgs>
