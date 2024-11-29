@@ -4,12 +4,12 @@
     <remote-repository>
       <option name="id" value="snapshot" />
       <option name="name" value="snapshot" />
-      <option name="url" value="https://maven.aliyun.com/repository/public" />
+      <option name="url" value="https://oss.sonatype.org/content/repositories/snapshots/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="snapshot" />
       <option name="name" value="snapshot" />
-      <option name="url" value="https://oss.sonatype.org/content/repositories/snapshots/" />
+      <option name="url" value="https://maven.aliyun.com/repository/public" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />
