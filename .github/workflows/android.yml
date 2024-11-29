@@ -41,6 +41,7 @@ jobs:
         run: cp -r target/gluonfx/aarch64-android/gvm/CaiDanCi.* staging
 
       - name: Cat all log file
+        if: ${{ always() }}
         run: cat /home/runner/work/caiDanCi/caiDanCi/target/gluonfx/log/*
 
       - name: Upload
