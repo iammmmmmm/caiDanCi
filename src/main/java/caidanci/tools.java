@@ -36,6 +36,10 @@ public class tools {
         System.out.println("屏幕 DPI: " + screenDPI);
         return new double[]{screenWidth, screenHeight};
     }
+    public static int[] getCenterPosition(){
+        var a=getScreenSize();
+        return new int[]{(int) (a[0] / 2), (int) (a[1] / 2)};
+    }
 
     public static int[] screenAutoSize(int preWith, int preHeight) {
         var screenSize = getScreenSize();

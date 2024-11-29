@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '17'
 
       - name: Install libraries
         run: |
@@ -39,6 +39,10 @@ jobs:
 
       - name: Copy packages to staging
         run: cp -r target/gluonfx/aarch64-android/gvm/CaiDanCi.* staging
+
+      - name: Cat all log file
+        if: ${{ always() }}
+        run: cat /home/runner/work/caiDanCi/caiDanCi/target/gluonfx/log/*
 
       - name: Upload
         uses: actions/upload-artifact@v4
