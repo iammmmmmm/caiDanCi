@@ -40,6 +40,9 @@ jobs:
       - name: Copy packages to staging
         run: cp -r target/gluonfx/aarch64-android/gvm/CaiDanCi.* staging
 
+      - name:Cat all log file
+        run:cat /home/runner/work/caiDanCi/caiDanCi/target/gluonfx/log/*
+
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
