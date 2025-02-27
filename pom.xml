@@ -11,10 +11,10 @@
 
     <properties>
         <attach.version>4.0.21</attach.version>
-        <gluonfx.maven.plugin.version>1.0.23</gluonfx.maven.plugin.version>
+        <gluonfx.maven.plugin.version>1.0.25</gluonfx.maven.plugin.version>
         <gluonfx.target>host</gluonfx.target>
         <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
-        <javafx.version>23</javafx.version>
+        <javafx.version>25-ea+5</javafx.version>
         <main.class>caidanci.HelloApplication</main.class>
         <maven.compiler.release>17</maven.compiler.release>
         <app.identifier>${main.class}</app.identifier>
@@ -27,7 +27,7 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <groupId>org.apache.maven.plugins</groupId>
-                <version>3.13.0</version>
+                <version>3.12.1</version>
             </plugin>
 
             <plugin>
