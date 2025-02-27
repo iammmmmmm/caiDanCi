@@ -1,6 +1,8 @@
 package caidanci;
 
-import javafx.application.Platform;
+import com.gluonhq.attach.storage.StorageService;
+import com.gluonhq.attach.util.Platform;
+import com.gluonhq.attach.util.Services;
 import javafx.collections.FXCollections;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.ComboBox;
@@ -9,6 +11,12 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 /**
@@ -36,8 +44,14 @@ public class tools {
         System.out.println("屏幕 DPI: " + screenDPI);
         return new double[]{screenWidth, screenHeight};
     }
-    public static int[] getCenterPosition(){
-        var a=getScreenSize();
+
+    /**
+     * 获取当前屏幕的中心位置坐标
+     *
+     * @return int【2】 x坐标 y坐标
+     */
+    public static int[] getCenterPosition() {
+        var a = getScreenSize();
         return new int[]{(int) (a[0] / 2), (int) (a[1] / 2)};
     }
 
@@ -81,10 +95,11 @@ public class tools {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
-                if (!(empty || item == null)) {
-                    setText(item);
-                    Platform.runLater(() -> setStyle("-fx-font-family: '" + item + "'; "));
-                }
+                //下面的有些许问题，包括但不限于性能影响严重，错误多，后台狂刷err，暂时不用
+//                if (!(empty || item == null)) {
+//                    setText(item);
+//                    javafx.application.Platform.runLater(() -> setStyle("-fx-font-family: '" + item + "'; "));
+//                }
             }
         });
     }
@@ -100,4 +115,47 @@ public class tools {
         });
 
     }
+
+    /**
+     * 初始化资源，将嵌入的资源释放到本地文件系统，以确保在部分系统如安卓上 h2，javafx.font.load，file能正常使用
+     *
+     * @param embeddedResourcePath 资源在程序内部的路径
+     * @return  资源在本地系统上的输入流，如果是非桌面端（linux win mac）将会是文件在本地文件系统的File对象
+     */
+    public static Object initializeResource(String embeddedResourcePath) {
+        Platform os = com.gluonhq.attach.util.Platform.getCurrent();
+        System.out.println(os.getName());
+
+        if (os == Platform.ANDROID) {
+            AtomicReference<String> localResourcePath = new AtomicReference<>("");
+            Services.get(StorageService.class).ifPresent(storage -> {
+                Optional<File> internalStorage = storage.getPrivateStorage();
+                if (internalStorage.isEmpty()) {
+                    System.err.println("Failed to get internal storage path.");
+                }
+                internalStorage.ifPresent(storageFile -> {
+                    System.out.println("Internal Storage Path: " + storageFile.getAbsolutePath());
+                    localResourcePath.set(storageFile.getAbsolutePath().replace(".gluon", "") + embeddedResourcePath);
+                });
+            });
+            File localFile = new File(localResourcePath.get());
+            if (!localFile.exists()) {
+                System.out.println("Resource does not exist, creating...");
+                try (InputStream is = tools.class.getResourceAsStream(embeddedResourcePath)) {
+                    if (is == null) {
+                        throw new RuntimeException("Embedded resource not found: " + embeddedResourcePath);
+                    }
+                    System.out.println(localFile.getAbsolutePath());
+                    Files.copy(is, localFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException e) {
+                    throw new RuntimeException("Failed to copy embedded Resource: " + e.getMessage(), e);
+                }
+            }
+                return localFile;
+        } else {
+            return tools.class.getResourceAsStream(embeddedResourcePath);
+        }
+    }
+
+
 }

@@ -33,7 +33,7 @@ public class SqlTools {
                 File internalStorage = storage.getPrivateStorage().orElse(null);
                 if (internalStorage != null) {
                     System.out.println("Internal Storage Path: " + internalStorage.getAbsolutePath());
-                    dbPath.set(internalStorage.getAbsolutePath() + "caidanci.mv.db");
+                    dbPath.set(internalStorage.getAbsolutePath().replace(".gluon", "") + "caidanci.mv.db");
                 } else {
                     System.out.println("Failed to get internal storage path.");
                 }

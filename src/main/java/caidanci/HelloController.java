@@ -15,9 +15,9 @@ import javafx.scene.text.Font;
 import org.kordamp.ikonli.bootstrapicons.BootstrapIcons;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class HelloController {
 
@@ -202,13 +202,20 @@ public class HelloController {
      */
     @FXML
     void initialize() {
+        Font a;
+        if (com.gluonhq.attach.util.Platform.getCurrent() == com.gluonhq.attach.util.Platform.ANDROID) {
 
-        Font a = Font.loadFont(Objects.requireNonNull(this.getClass().getResourceAsStream("fonts/fzjt.ttf")), 0);
-Platform.runLater(() -> showAlert(Alert.AlertType.WARNING, "错误！", "！", "font.getFamily:" + a.getFamily()+"！"));
-Platform.runLater(() -> tm.setFontFamily(a.getFamily()));
+            File fontFile = (File) tools.initializeResource("fzjt.ttf");
+            a = Font.loadFont(fontFile.toURI().toString(), 25);
+        } else {
+            a = Font.loadFont(this.getClass().getResourceAsStream("fzjt.ttf"), 0);
+        }
+
+        Font finalA = a;
+        Platform.runLater(() -> tm.setFontFamily(finalA.getFamily()));
         Platform.runLater(() -> tm.addScene(info.getScene()));
 
- tools.makeFontFamilyChooser(fontChose);
+        tools.makeFontFamilyChooser(fontChose);
         tools.makeFontSizeChooser(fontSize);
         Platform.runLater(() -> Application.setUserAgentStylesheet(theme[themeFlag]));
         changeTheme.setGraphic(new FontIcon(BootstrapIcons.MOON));
@@ -322,7 +329,7 @@ Platform.runLater(() -> tm.setFontFamily(a.getFamily()));
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
-alert.initOwner(inputTextFiled.getScene().getWindow());
+        alert.initOwner(inputTextFiled.getScene().getWindow());
         alert.showAndWait();
     }
 
