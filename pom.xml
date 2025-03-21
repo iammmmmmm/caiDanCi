@@ -10,7 +10,7 @@
     <name>CaiDanCi</name>
 
     <properties>
-        <attach.version>4.0.21</attach.version>
+        <attach.version>4.0.22</attach.version>
         <gluonfx.maven.plugin.version>1.0.25</gluonfx.maven.plugin.version>
         <gluonfx.target>host</gluonfx.target>
         <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>

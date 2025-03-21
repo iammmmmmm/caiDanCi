@@ -2,6 +2,7 @@ package caidanci;
 
 import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.PrimerLight;
+import com.gluonhq.attach.keyboard.KeyboardService;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -206,7 +207,14 @@ public class HelloController {
         if (com.gluonhq.attach.util.Platform.getCurrent() == com.gluonhq.attach.util.Platform.ANDROID) {
 
             File fontFile = (File) tools.initializeResource("fzjt.ttf");
-            a = Font.loadFont(fontFile.toURI().toString(), 25);
+            a = Font.loadFont(fontFile.toURI().toString(), 0);
+
+            var keyboardService= KeyboardService.create();
+            if (keyboardService.isPresent()) {
+                keyboardService.get().keepVisibilityForNode(inputTextFiled);
+            }else {
+                System.err.println("keyboardService is null!");
+            }
         } else {
             a = Font.loadFont(this.getClass().getResourceAsStream("fzjt.ttf"), 0);
         }
@@ -214,6 +222,8 @@ public class HelloController {
         Font finalA = a;
         Platform.runLater(() -> tm.setFontFamily(finalA.getFamily()));
         Platform.runLater(() -> tm.addScene(info.getScene()));
+
+
 
         tools.makeFontFamilyChooser(fontChose);
         tools.makeFontSizeChooser(fontSize);

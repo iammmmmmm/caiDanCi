@@ -16,6 +16,8 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        //
+        
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         var size = tools.screenAutoSize(440, 800);
         Parent root = fxmlLoader.load();

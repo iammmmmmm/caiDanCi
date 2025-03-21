@@ -7,6 +7,7 @@ module caiDanCi {
     requires java.sql;
     requires com.gluonhq.attach.storage;
     requires com.gluonhq.attach.util;
+    requires com.gluonhq.attach.keyboard;
 
     requires jdk.xml.dom;
     opens caidanci to javafx.fxml;
