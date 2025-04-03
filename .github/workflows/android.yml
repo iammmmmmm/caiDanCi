@@ -32,11 +32,6 @@ jobs:
         run: |
           export ANDROID_SDK=$ANDROID_HOME
           ./mvnw -Pandroid gluonfx:build gluonfx:package
-        env:
-          GLUON_ANDROID_KEYSTOREPATH: ${{ steps.android_keystore_file.outputs.filePath }}
-          GLUON_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.GLUON_ANDROID_KEYSTORE_PASSWORD }}
-          GLUON_ANDROID_KEYALIAS: ${{ secrets.GLUON_ANDROID_KEYALIAS }}
-          GLUON_ANDROID_KEYALIAS_PASSWORD: ${{ secrets.GLUON_ANDROID_KEYALIAS_PASSWORD }}
 
       - name: Make staging directory
         run: mkdir staging
