@@ -11,12 +11,12 @@
 
     <properties>
         <attach.version>4.0.22</attach.version>
-        <gluonfx.maven.plugin.version>1.0.25</gluonfx.maven.plugin.version>
+        <gluonfx.maven.plugin.version>1.0.26</gluonfx.maven.plugin.version>
         <gluonfx.target>host</gluonfx.target>
         <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
         <javafx.version>25-ea+5</javafx.version>
         <main.class>caidanci.HelloApplication</main.class>
-        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.release>23</maven.compiler.release>
         <app.identifier>${main.class}</app.identifier>
         <app.description>The CaiDanCi game</app.description>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

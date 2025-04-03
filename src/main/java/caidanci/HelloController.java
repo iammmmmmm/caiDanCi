@@ -222,9 +222,6 @@ public class HelloController {
         Font finalA = a;
         Platform.runLater(() -> tm.setFontFamily(finalA.getFamily()));
         Platform.runLater(() -> tm.addScene(info.getScene()));
-
-
-
         tools.makeFontFamilyChooser(fontChose);
         tools.makeFontSizeChooser(fontSize);
         Platform.runLater(() -> Application.setUserAgentStylesheet(theme[themeFlag]));
