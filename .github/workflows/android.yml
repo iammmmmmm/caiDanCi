@@ -3,43 +3,51 @@ name: Android
 on:
   push:
     branches: [ master ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Checkout your project
       - uses: actions/checkout@v4
 
-      # Make sure the latest GraalVM is installed.
-      # after this step env.JAVA_HOME and env.GRAALVM_HOME will point to the GraalVM location
-      - name: Setup GraalVM built by Gluon
+      - name: Setup Gluon's GraalVM
         uses: gluonhq/setup-graalvm@master
-        # set GITHUB_TOKEN to avoid exceeding GitHub's API rate limit
+        with:
+          graalvm: '22.1.0.1-Final'
+          jdk: 'java17'
         env:
           GITHUB_TOKEN: ${{ secrets.A_GITHUB_TOKEN }}
 
-      # Install extra requirements on top of ubuntu-latest
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
       - name: Install libraries
         run: |
           sudo apt-get update
           sudo apt install libasound2-dev libavcodec-dev libavformat-dev libavutil-dev libgl-dev libgtk-3-dev libpango1.0-dev libxtst-dev
-      # Build your project using Maven
-      # The android profile is used, which means a native build will be created for the gluonfx target android.
-      # This step also uses some env variables taken from the repo secrets. See the section 'Setup Android Keystore' below.
       - name: Gluon Build
-        run: mvn -Pandroid gluonfx:build gluonfx:package
+        run: |
+          export ANDROID_SDK=$ANDROID_HOME
+          ./mvnw -Pandroid gluonfx:build gluonfx:package
+        env:
+          GLUON_ANDROID_KEYSTOREPATH: ${{ steps.android_keystore_file.outputs.filePath }}
+          GLUON_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.GLUON_ANDROID_KEYSTORE_PASSWORD }}
+          GLUON_ANDROID_KEYALIAS: ${{ secrets.GLUON_ANDROID_KEYALIAS }}
+          GLUON_ANDROID_KEYALIAS_PASSWORD: ${{ secrets.GLUON_ANDROID_KEYALIAS_PASSWORD }}
 
-      # Create staging directory in which the apk will be copied
       - name: Make staging directory
         run: mkdir staging
 
-      # Copy the apk to the staging directory
-      - name: Copy native images to staging
-        run: cp -r target/gluonfx/aarch64-android/gvm/*.apk staging
+      - name: Copy packages to staging
+        run: cp -r target/gluonfx/aarch64-android/gvm/HelloGluon.* staging
 
-      # Upload the staging directoy as a build artifact
       - name: Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Package
           path: staging
+
+
