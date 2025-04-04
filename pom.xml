@@ -10,13 +10,10 @@
     <name>CaiDanCi</name>
 
     <properties>
-        <attach.version>4.0.22</attach.version>
-        <gluonfx.maven.plugin.version>1.0.26</gluonfx.maven.plugin.version>
-        <gluonfx.target>host</gluonfx.target>
         <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
         <javafx.version>25-ea+5</javafx.version>
         <main.class>caidanci.HelloApplication</main.class>
-        <maven.compiler.release>23</maven.compiler.release>
+        <maven.compiler.release>24</maven.compiler.release>
         <app.identifier>${main.class}</app.identifier>
         <app.description>The CaiDanCi game</app.description>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -37,6 +34,18 @@
                 </configuration>
                 <groupId>org.openjfx</groupId>
                 <version>${javafx.maven.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <mainClass>${main.class}</mainClass> <!-- 替换为您的主类完整路径 -->
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -112,77 +121,13 @@
             <groupId>com.h2database</groupId>
             <version>2.3.232</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.gluonhq.attach/util -->
-        <dependency>
-            <artifactId>util</artifactId>
-            <groupId>com.gluonhq.attach</groupId>
-            <version>${attach.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.gluonhq.attach/storage -->
-        <dependency>
-            <artifactId>storage</artifactId>
-            <groupId>com.gluonhq.attach</groupId>
-            <version>${attach.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.gluonhq.attach/keyboard -->
-        <dependency>
-            <artifactId>keyboard</artifactId>
-            <groupId>com.gluonhq.attach</groupId>
-            <version>${attach.version}</version>
-        </dependency>
+
 
     </dependencies>
 
 
     <packaging>jar</packaging>
-    <profiles>
-        <profile>
-            <id>desktop</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <gluonfx.target>host</gluonfx.target>
-            </properties>
-        </profile>
-        <profile>
-            <id>ios</id>
-            <properties>
-                <gluonfx.target>ios</gluonfx.target>
-            </properties>
-        </profile>
-        <profile>
-            <id>android</id>
 
-            <properties>
-                <app.identifier>org.iam.caidanci</app.identifier>
-                <gluonfx.target>android</gluonfx.target>
-            </properties>
-        </profile>
-        <profile>
-            <id>pi</id>
-            <properties>
-                <gluonfx.target>linux-aarch64</gluonfx.target>
-            </properties>
-        </profile>
-    </profiles>
 
-    <repositories>
-        <repository>
-            <id>Gluon</id>
-            <url>https://nexus.gluonhq.com/nexus/content/repositories/releases</url>
-        </repository>
-        <repository>
-            <id>snapshot</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>snapshot</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </pluginRepository>
-    </pluginRepositories>
 
 </project>

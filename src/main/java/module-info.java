@@ -5,11 +5,10 @@ module caiDanCi {
     requires org.kordamp.ikonli.bootstrapicons;
     requires org.kordamp.ikonli.javafx;
     requires java.sql;
-    requires com.gluonhq.attach.storage;
-    requires com.gluonhq.attach.util;
-    requires com.gluonhq.attach.keyboard;
+
 
     requires jdk.xml.dom;
+    requires com.gluonhq.attach.storage;
     opens caidanci to javafx.fxml;
 
     exports caidanci;

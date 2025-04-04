@@ -1,8 +1,6 @@
 package caidanci;
 
-import com.gluonhq.attach.storage.StorageService;
-import com.gluonhq.attach.util.Platform;
-import com.gluonhq.attach.util.Services;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -26,19 +24,6 @@ public class SqlTools {
     public SqlTools() {
         AtomicReference<String> dbPath = new AtomicReference<>(
                 System.getProperty("user.dir") + "/caidanci.mv.db");
-        var os = Platform.getCurrent();
-        System.out.println(os.getName());
-        if (os == Platform.ANDROID) {
-            Services.get(StorageService.class).ifPresent(storage -> {
-                File internalStorage = storage.getPrivateStorage().orElse(null);
-                if (internalStorage != null) {
-                    System.out.println("Internal Storage Path: " + internalStorage.getAbsolutePath());
-                    dbPath.set(internalStorage.getAbsolutePath().replace(".gluon", "") + "caidanci.mv.db");
-                } else {
-                    System.out.println("Failed to get internal storage path.");
-                }
-            });
-        }
         try {
             if (!new File(dbPath.get()).exists()) {
                 System.out.println("数据库不存在，正在创建...");

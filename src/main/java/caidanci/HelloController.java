@@ -2,7 +2,6 @@ package caidanci;
 
 import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.PrimerLight;
-import com.gluonhq.attach.keyboard.KeyboardService;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -16,7 +15,6 @@ import javafx.scene.text.Font;
 import org.kordamp.ikonli.bootstrapicons.BootstrapIcons;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -204,21 +202,7 @@ public class HelloController {
     @FXML
     void initialize() {
         Font a;
-        if (com.gluonhq.attach.util.Platform.getCurrent() == com.gluonhq.attach.util.Platform.ANDROID) {
-
-            File fontFile = (File) tools.initializeResource("fzjt.ttf");
-            a = Font.loadFont(fontFile.toURI().toString(), 0);
-
-            var keyboardService= KeyboardService.create();
-            if (keyboardService.isPresent()) {
-                keyboardService.get().keepVisibilityForNode(inputTextFiled);
-            }else {
-                System.err.println("keyboardService is null!");
-            }
-        } else {
-            a = Font.loadFont(this.getClass().getResourceAsStream("fzjt.ttf"), 0);
-        }
-
+        a = Font.loadFont(this.getClass().getResourceAsStream("fzjt.ttf"), 0);
         Font finalA = a;
         Platform.runLater(() -> tm.setFontFamily(finalA.getFamily()));
         Platform.runLater(() -> tm.addScene(info.getScene()));
