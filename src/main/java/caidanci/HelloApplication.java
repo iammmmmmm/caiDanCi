@@ -24,7 +24,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(root, size[0], size[1]);
         stage.setScene(scene);
         stage.setTitle("Hello!");
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.show();
     }
 }

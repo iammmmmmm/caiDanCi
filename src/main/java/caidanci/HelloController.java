@@ -12,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.StageStyle;
 import org.kordamp.ikonli.bootstrapicons.BootstrapIcons;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -215,7 +216,7 @@ public class HelloController {
         startGame();
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 46, wordLength);
         levelChose.setValueFactory(valueFactory);
-        levelChose.valueProperty().addListener((observable, oldValue, newValue) -> {
+        levelChose.valueProperty().addListener((_, _, newValue) -> {
             wordLength = newValue;
             inputTimeUpdate();
         });
@@ -320,7 +321,7 @@ public class HelloController {
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
-        alert.initOwner(inputTextFiled.getScene().getWindow());
+        alert.setResizable(true);
         alert.showAndWait();
     }
 

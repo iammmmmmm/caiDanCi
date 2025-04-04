@@ -11,7 +11,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Screen;
 
 
-
 /**
  * @author Iammm 2024/8/23 22:32
  */
@@ -71,13 +70,11 @@ public class tools {
         var tm = ThemeManager.getInstance();
         fontFamilyChooser.setPrefWidth(200);
 
-        // keyword to reset font family to its default value
         fontFamilyChooser.getItems().add(tm.getFontFamily());
         fontFamilyChooser.getItems().addAll(FXCollections.observableArrayList(Font.getFamilies()));
 
-        // select active font family value on page load
         fontFamilyChooser.getSelectionModel().select(tm.getFontFamily());
-        fontFamilyChooser.valueProperty().addListener((obs, old, val) -> {
+        fontFamilyChooser.valueProperty().addListener((_, _, val) -> {
             if (val != null) {
                 tm.setFontFamily(val);
             }
@@ -88,6 +85,7 @@ public class tools {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
+                setText(item);
                 //下面的有些许问题，包括但不限于性能影响严重，错误多，后台狂刷err，暂时不用
 //                if (!(empty || item == null)) {
 //                    setText(item);
@@ -99,11 +97,12 @@ public class tools {
 
     public static void makeFontSizeChooser(Spinner<Integer> fontSize) {
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(
-                8, 72, 14);
+                8, 72, 18);
         fontSize.setValueFactory(valueFactory);
         var tm = ThemeManager.getInstance();
+        tm.setFontSize(fontSize.getValue());
         // 添加监听器，当Spinner值改变时，更新Label的字体大小
-        fontSize.valueProperty().addListener((observable, oldValue, newValue) -> {
+        fontSize.valueProperty().addListener((_, _, newValue) -> {
             tm.setFontSize(newValue);
         });
 
